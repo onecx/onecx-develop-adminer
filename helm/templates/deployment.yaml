@@ -18,6 +18,20 @@ spec:
       imagePullSecrets:
       - name: {{ .Values.imagePullSecrets }}
       {{- end }}
+      {{- if .Values.nodeSelector }}
+      nodeSelector:
+        {{- .Values.nodeSelector | toYaml | trim | nindent 8 }}
+      {{- else if .Values.global.nodeSelector }}
+      nodeSelector:
+        {{- .Values.global.nodeSelector | toYaml | trim | nindent 8 }}
+      {{- end }}
+      {{- if .Values.tolerations }}
+      tolerations:
+        {{- .Values.tolerations | toYaml | trim | nindent 8 }}
+      {{- else if .Values.global.tolerations }}
+      tolerations:
+        {{- .Values.global.tolerations | toYaml | trim | nindent 8 }}
+      {{- end }}       
       containers:
       - name: {{ include "app.fullname" . }}
         image: {{ .Values.app.image.registry }}/{{ .Values.app.image.repository }}:{{ .Values.app.image.tag }}
