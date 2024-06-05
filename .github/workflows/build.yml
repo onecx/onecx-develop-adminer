@@ -10,7 +10,6 @@ jobs:
   docker:
     uses: onecx/ci-common/.github/workflows/docker-build.yml@v1
     secrets: inherit
-    needs: docker
     with:
       platform: 'linux/amd64,linux/arm64'
       buildx: true    
@@ -21,6 +20,7 @@ jobs:
   helm:
     uses: onecx/ci-common/.github/workflows/helm-build.yml@v1
     secrets: inherit
+    needs: docker
     with:
       push: true
       artifact: ''
