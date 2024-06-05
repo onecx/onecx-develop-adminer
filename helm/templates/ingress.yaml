@@ -1,0 +1,33 @@
+{{- if .Values.routing.enabled }}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name:  {{ include "app.fullname" . }}
+  labels:
+{{ include "app.labels.common" $ | indent 4 }}
+  annotations:  
+{{- if .Values.traefik.middleware.auth.enabled }}
+    traefik.ingress.kubernetes.io/router.middlewares: {{ include "app.fullname" . }}-auth@kubernetescrd
+{{- end }}  
+{{- if .Values.routing.ingress.annotations }}  
+{{ toYaml .Values.routing.ingress.annotations  | indent 4 }}
+{{- end }}
+spec:
+  rules:
+  - http:
+      paths:
+      - path: "/"
+        pathType: Prefix
+        backend:
+          service:
+            name: {{ .Release.Name }}-{{ .Values.name | default .Chart.Name }}
+            port: 
+              number: {{ .Values.service.port }}
+    {{ if .Values.routing.ingress.host.override }}
+    host: {{ .Values.routing.ingress.host.override }}.{{ .Values.global.default_url | default .Values.routing.default_url }} 
+    {{ else if .Values.routing.ingress.host.name }}
+    host: {{ .Values.routing.ingress.host.name }}-{{ .Release.Namespace }}.{{ .Values.global.default_url | default .Values.routing.default_url }}
+    {{ else }}
+    host: {{ .Release.Name }}-{{ .Values.name | default .Chart.Name }}-{{ .Release.Namespace }}.{{ .Values.global.default_url | default .Values.routing.default_url }}              
+    {{- end }}
+{{ end }}

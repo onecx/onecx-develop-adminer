@@ -1,0 +1,18 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{ include "app.fullname" . }}
+  labels:
+{{ include "app.labels.common" $ | indent 4 }}
+  annotations:
+    description: {{ include "app.fullname" . }}
+spec:
+  selector:
+    app: {{ include "app.fullname" . }}
+  ports:
+    - name: http
+      protocol: TCP
+      port: {{ .Values.service.port }}
+      targetPort: {{ .Values.pod.port }}
+  type: ClusterIP
+  sessionAffinity: None

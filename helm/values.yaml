@@ -1,0 +1,69 @@
+# global configuration
+global:
+  # global host name
+  default_url:
+
+# Name of the instance, default {{ .Release.Name }}-{{ .Values.name | default .Chart.Name }}
+name: adminer
+
+# Adminer image
+image:
+  # Docker registry
+  registry: "docker.io"
+  # Docker image
+  repository: "adminer"
+  # Docker version
+  tag: 4.8.1-standalone
+
+# service
+service:
+  port: 8080
+
+# post configuration
+pod:
+  # pot port
+  port: 8080
+
+imagePullPolicy: IfNotPresent
+
+# Route
+routing:
+  # Enable or disable route
+  enabled: true
+
+  # Default URL
+  default_url: "change.com"
+
+  # ingress
+  ingress:
+    # host configuration
+    host:
+      # prio1 if the name is define generate domain <override>.<default_url>
+      override :
+      # prio2 if the name is define generate domain <name>-<release_namespace>.<default_url>
+      name:
+      # else <release_name>-<name of chart_name>-<release_namespace>.<default_url>
+
+    # aditional annotations    
+    annotations: {}
+    #  traefik.ingress.kubernetes.io/router.middlewares: traefik-develop-basic-auth@kubernetescrd
+
+# database configuration
+db:
+  # default server
+  server:
+
+# Replicas
+replicas: 1
+
+# Adminer theme
+theme: "pepa-linha"
+
+# Custom resources
+traefik:
+  middleware:
+    auth:
+      # enable or disabel traefik middleware
+      enabled: true
+      # user:password hash
+      users:

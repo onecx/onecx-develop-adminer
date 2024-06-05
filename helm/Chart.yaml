@@ -1,0 +1,12 @@
+apiVersion: v2
+name: onecx-develop-adminer
+version: 0.0.0
+appVersion: 0.0.0
+description: adminer
+keywords:
+  - adminer
+sources:
+  - https://github.com/onecx/onecx-develop-adminer
+maintainers:
+  - name: Tkit Developer
+    email: tkit_dev@1000kit.org
