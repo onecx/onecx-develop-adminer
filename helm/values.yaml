@@ -3,8 +3,20 @@ global:
   # global host name
   default_url:
 
+  # node selector for the pods
+  nodeSelector:
+
+  # tolerations for the pods
+  tolerations:
+
 # Name of the instance, default {{ .Release.Name }}-{{ .Values.name | default .Chart.Name }}
 name: adminer
+
+# node selector for the pods
+nodeSelector:
+
+# tolerations for the pods
+tolerations:
 
 # service
 service:
@@ -16,6 +28,16 @@ pod:
   port: 8080
 
 imagePullPolicy: IfNotPresent
+
+app:
+  # Application image
+  image:
+    # Docker registry
+    registry: "ghcr.io"
+    # Docker repository (application name)
+    repository: "change-me"
+    # Docker image tag (application version)
+    tag: "main"
 
 # Route
 routing:
@@ -42,7 +64,7 @@ routing:
 # database configuration
 db:
   # default server
-  server:
+  server: postgresql
 
 # Replicas
 replicas: 1
@@ -55,6 +77,6 @@ traefik:
   middleware:
     auth:
       # enable or disabel traefik middleware
-      enabled: true
+      enabled: false
       # user:password hash
       users:
