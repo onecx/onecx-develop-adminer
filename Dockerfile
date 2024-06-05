@@ -1,0 +1,1 @@
+FROM docker.io/adminer:4.8.1-standalone

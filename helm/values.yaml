@@ -6,15 +6,6 @@ global:
 # Name of the instance, default {{ .Release.Name }}-{{ .Values.name | default .Chart.Name }}
 name: adminer
 
-# Adminer image
-image:
-  # Docker registry
-  registry: "docker.io"
-  # Docker image
-  repository: "adminer"
-  # Docker version
-  tag: 4.8.1-standalone
-
 # service
 service:
   port: 8080

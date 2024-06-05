@@ -20,7 +20,7 @@ spec:
       {{- end }}
       containers:
       - name: {{ include "app.fullname" . }}
-        image: {{ .Values.image.registry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}
+        image: {{ .Values.app.image.registry }}/{{ .Values.app.image.repository }}:{{ .Values.app.image.tag }}
         imagePullPolicy: {{ .Values.imagePullPolicy }}
         env:   
           - name: ADMINER_DESIGN
