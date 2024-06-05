@@ -42,7 +42,7 @@ routing:
 # database configuration
 db:
   # default server
-  server:
+  server: postgresql
 
 # Replicas
 replicas: 1
@@ -55,6 +55,6 @@ traefik:
   middleware:
     auth:
       # enable or disabel traefik middleware
-      enabled: true
+      enabled: false
       # user:password hash
       users:
