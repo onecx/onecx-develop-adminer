@@ -7,7 +7,7 @@ metadata:
 {{ include "app.labels.common" $ | indent 4 }}
   annotations:  
 {{- if .Values.traefik.middleware.auth.enabled }}
-    traefik.ingress.kubernetes.io/router.middlewares: {{ include "app.fullname" . }}-auth@kubernetescrd
+    traefik.ingress.kubernetes.io/router.middlewares: {{ .Release.Namespace }}-{{ include "app.fullname" . }}-auth@kubernetescrd
 {{- end }}  
 {{- if .Values.routing.ingress.annotations }}  
 {{ toYaml .Values.routing.ingress.annotations  | indent 4 }}
