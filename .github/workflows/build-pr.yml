@@ -22,3 +22,10 @@ jobs:
     with:
       helmDir: 'helm'
       artifact: ''
+  auto-merge:
+    if: |
+      !cancelled() && needs.helm.result == 'success'
+    uses: onecx/ci-common/.github/workflows/helm-pr-auto-merge.yaml@v1
+    needs: [helm]
+    secrets: inherit
+
