@@ -11,6 +11,12 @@ jobs:
     uses: onecx/ci-common/.github/workflows/helm-release.yml@v1
     secrets: inherit
     needs: docker
+  helm-event:
+    uses: onecx/ci-product/.github/workflows/helm-send-event.yml@v1
+    needs: helm
+    secrets: inherit
+    with:
+      targetRepository: onecx/onecx-develop
   changelog:
     uses: onecx/ci-common/.github/workflows/generate-changelog.yml@v1
     needs: helm
