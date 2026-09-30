@@ -1,1 +1,1 @@
-FROM docker.io/adminer:6.1.0-standalone
+FROM docker.io/adminer:6.1.1-standalone
