@@ -1,1 +1,1 @@
-FROM docker.io/adminer:6.3.0-standalone@sha256:3a07decd833c2375ea749aa8018250c1db4859a78bd55354f797bfb591733233
+FROM docker.io/adminer:6.3.0-standalone@sha256:037125c2bc4836b4917d4fd08a16f817eac2848778c4e9aab87a8340aef08dfd
